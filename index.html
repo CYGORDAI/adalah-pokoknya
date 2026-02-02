@@ -44,6 +44,7 @@ h1 {
   border-radius: 20px;
   box-shadow: 0 0 15px #ff69b4;
   background: #fff0f5;
+  cursor: pointer;
 }
 
 .slideshow-container img {
@@ -124,7 +125,7 @@ h1 {
   <h1>For You, My Love 💖</h1>
 
   <!-- SLIDESHOW -->
-  <div class="slideshow-container">
+  <div class="slideshow-container" id="slideshow">
     <img src="foto1.jpg" class="active">
     <img src="foto2.jpg">
     <img src="foto3.jpg">
@@ -158,12 +159,20 @@ setInterval(() => {
   slides[idx].classList.add("active");
 }, 4000);
 
-/* OPEN PHOTO BUTTON */
-document.getElementById("openPhoto").onclick = () => {
+/* OPEN PHOTO FUNCTION */
+function openCurrentPhoto() {
   const current = slides[idx];
   const url = current.src;
   window.open(url, "_blank");
-};
+  // sembunyikan tombol setelah dibuka
+  document.getElementById("openPhoto").style.display = "none";
+}
+
+// tombol “lihat foto”
+document.getElementById("openPhoto").onclick = openCurrentPhoto;
+
+// klik foto langsung buka
+document.getElementById("slideshow").onclick = openCurrentPhoto;
 
 /* MESSAGE BOX TYPING EFFECT */
 const messageBox = document.getElementById("messageBox");
